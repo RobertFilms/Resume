@@ -7,11 +7,11 @@ const resumeData = {
     phone: '(717) 893-6346',
     location: 'Red Lion, PA',
     profileImage: '/profile.jpg',
-    summary: 'Entry-level software developer focused on full-stack web development, API design, and practical tools that solve real user problems. Experienced building responsive interfaces, integrating third-party APIs, and delivering maintainable code in collaborative environments.',
+    summary: 'Full-stack developer experienced in React, Node.js, Express, and REST API development. Built educational platforms, scheduling systems, and business tools with a focus on usability, performance, and maintainable code.',
     highlights: [
         { id: 'experience', label: '3+', value: 'Years Experience' },
         { id: 'projects', label: '5+', value: 'Projects Completed' },
-        { id: 'contact', label: '100%', value: 'Client Satisfaction' }
+        { id: 'certificates', label: '4', value: 'Certifications Earned' }
     ],
     skills: [
         'JavaScript',
@@ -47,18 +47,27 @@ const resumeData = {
     projects: [
         {
             name: 'FormPix',
+            technologies: ['Node.js', 'Express', 'REST API', 'JavaScript'],
             description: 'Web application for controlling programmable LED displays with secure user authentication and real-time command updates.',
             link: 'https://github.com/csmith1188/formPix'
         },
         {
             name: 'QuizBank',
+            technologies: ['Node.js', 'Express', 'NoSQL', 'JavaScript'],
             description: 'Education platform that enables teachers to create quizzes, monitor student progress, and generate reports for school management workflows.',
             link: 'https://github.com/csmith1188/quizbank'
         },
         {
             name: 'JukeBar',
+            technologies: ['JavaScript', 'Spotify API', 'HTML', 'CSS'],
             description: 'Web-based jukebox that manages playlists and queues music playback through the Spotify Web API.',
             link: 'https://github.com/csmith1188/jukebar'
+        },
+        {
+            name: 'Works For Me',
+            technologies: ['JavaScript', 'HTML', 'CSS', 'Responsive Design'],
+            description: 'A web application that helps businesses and individuals schedule, manage, and organize meetings and appointments through an easy-to-use online platform accessible from desktop and mobile devices.',
+            link: 'https://github.com/csmith1188/worksforme'
         }
     ],
     certificates: [
@@ -94,7 +103,7 @@ const resumeData = {
     portfolioSites: [
         { name: 'GitHub', url: 'https://github.com/RobertFilms', icon: '🐙' },
         { name: 'CodePen', url: 'https://codepen.io/RobertFilms', icon: '✏️' },
-        // { name: 'Portfolio', url: 'https://yourportfolio.com', icon: '🌐' }, DONT HAVE ONE YET
+        // { name: 'Portfolio', url: 'https://robert-apps.com', icon: '🌐' }, DONT HAVE ONE YET
         { name: 'LinkedIn', url: 'https://www.linkedin.com/in/robert-ambartsumyan-171594338/', icon: '💼' }
     ],
     education: [
@@ -102,7 +111,7 @@ const resumeData = {
             degree: 'High School Diploma',
             school: 'York County School of Technology',
             year: '2022-2026',
-            details: 'GPA: 3.8/4.0 | Relevant coursework: Computer Programming, Web Development, Data Structures, and Algorithms'
+            details: 'GPA: 3.7 | Relevant coursework: Computer Programming, Web Development, Data Structures, and Algorithms'
         }
     ]
 }
@@ -224,7 +233,7 @@ function App() {
                 </div>
             </section>
 
-            {/*}
+            {/*
             <section className="page-preview-grid">
                 <button type="button" className="preview-card" onClick={() => setActivePage('experience')}>
                     <span className="preview-kicker">Experience</span>
@@ -301,12 +310,18 @@ function App() {
             <section className="projects">
                 <div className="section-head">
                     <h2>Featured Projects</h2>
-                    <button type="button" className="text-link" onClick={() => setActivePage('projects')}>
+                    <p>Check out some of the projects I've worked on, there are more available on my project page.</p>
+                    <button
+                        type="button"
+                        className="text-link"
+                        onClick={() => setActivePage('projects')}
+                    >
                         Explore project page
                     </button>
                 </div>
+
                 <div className="projects-grid">
-                    {resumeData.projects.map((project) => (
+                    {resumeData.projects.slice(0, 4).map((project) => (
                         <a
                             key={project.name}
                             href={project.link}
@@ -316,6 +331,13 @@ function App() {
                         >
                             <h3>{project.name}</h3>
                             <p>{project.description}</p>
+                            <div className="project-tech">
+                                {project.technologies?.map((tech) => (
+                                    <span key={tech} className="project-tech-tag">
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
                             <span className="view-link">View Project</span>
                         </a>
                     ))}
@@ -353,7 +375,7 @@ function App() {
             <section className="detail-panel">
                 <h2>Why 3+ Years Matters</h2>
                 <p>
-                    Most of my programming experience has been gained through hands-on work in real-world roles (most of which being jobs from my tecaher), where I’ve built and maintained production applications, collaborated with teams, and solved practical problems. This experience has given me a deep understanding of the software development lifecycle.
+                    Most of my programming experience has been gained through hands-on work in real-world roles (most of which were projects and contracts completed through my instructor and industry partnerships), where I’ve built and maintained production applications, collaborated with teams, and solved practical problems. This experience has given me a deep understanding of the software development lifecycle.
                 </p>
                 <div className="timeline-grid">
                     {resumeData.experience.map((exp) => (
@@ -384,7 +406,6 @@ function App() {
                 </button>
             </div>
 
-            <section className="detail-panel">
                 <h2>Featured Work</h2>
                 <div className="projects-grid compact">
                     {resumeData.projects.map((project) => (
@@ -397,11 +418,17 @@ function App() {
                         >
                             <h3>{project.name}</h3>
                             <p>{project.description}</p>
+                            <div className="project-tech">
+                                {project.technologies?.map((tech) => (
+                                    <span key={tech} className="project-tech-tag">
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
                             <span className="view-link">Open link</span>
                         </a>
                     ))}
                 </div>
-            </section>
         </>
     )
 

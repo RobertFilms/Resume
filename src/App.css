@@ -806,6 +806,30 @@ section h2 {
   z-index: 1;
 }
 
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.project-tech-tag {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eef2f7;
+  border: 1px solid #d7dee6;
+  color: #2c3e50;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.project-card:hover .project-tech-tag {
+  background: #2c3e50;
+  color: white;
+  border-color: #2c3e50;
+}
+
 .view-link {
   color: #2c3e50;
   font-weight: 700;
