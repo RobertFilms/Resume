@@ -68,6 +68,24 @@ const resumeData = {
             technologies: ['JavaScript', 'HTML', 'CSS', 'Responsive Design'],
             description: 'A web application that helps businesses and individuals schedule, manage, and organize meetings and appointments through an easy-to-use online platform accessible from desktop and mobile devices.',
             link: 'https://github.com/csmith1188/worksforme'
+        },
+        {
+            name: 'Run-n-Jump',
+            technologies: ['JavaScript', 'HTML', 'CSS', 'Canvas'],
+            description: 'A simple web-based game where players control a dinosaur to run and jump over obstacles. This game was used as a introduction into HTML Canvas and reactive development.',
+            link: 'https://github.com/RobertFilms/Run-n-Jump'
+        },
+        {
+            name: 'zombie-shooter',
+            technologies: ['JavaScript', 'HTML', 'CSS', 'Canvas', 'Socket.io'],
+            description: 'A simple web-based game where players control a character to shoot zombies. This game was used to practice real-time communication and multiplayer functionality with Socket.io.',
+            link: 'https://github.com/RobertFilms/zombie-shooter'
+        },
+        {
+            name: 'ForumBoard',
+            technologies: ['JavaScript', 'HTML', 'CSS', 'Node.js', 'Express'],
+            description: 'A simple web-based forum application where users can create posts, reply to threads, and interact with other members in real time.',
+            link: 'https://github.com/RobertFilms/ForumBoard/tree/main'
         }
     ],
     certificates: [
@@ -406,29 +424,29 @@ function App() {
                 </button>
             </div>
 
-                <h2>Featured Work</h2>
-                <div className="projects-grid compact">
-                    {resumeData.projects.map((project) => (
-                        <a
-                            key={project.name}
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="project-card"
-                        >
-                            <h3>{project.name}</h3>
-                            <p>{project.description}</p>
-                            <div className="project-tech">
-                                {project.technologies?.map((tech) => (
-                                    <span key={tech} className="project-tech-tag">
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-                            <span className="view-link">Open link</span>
-                        </a>
-                    ))}
-                </div>
+            <h2>Featured Work</h2>
+            <div className="projects-grid compact">
+                {resumeData.projects.map((project) => (
+                    <a
+                        key={project.name}
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-card"
+                    >
+                        <h3>{project.name}</h3>
+                        <p>{project.description}</p>
+                        <div className="project-tech">
+                            {project.technologies?.map((tech) => (
+                                <span key={tech} className="project-tech-tag">
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
+                        <span className="view-link">Open link</span>
+                    </a>
+                ))}
+            </div>
         </>
     )
 
@@ -583,8 +601,14 @@ function App() {
                 <button type="button" className={activePage === 'certificates' ? 'nav-item active' : 'nav-item'} onClick={() => setActivePage('certificates')}>
                     Certificates
                 </button>
-                <button type="button" className="nav-item print-nav" onClick={() => window.print()}>
-                    Print
+                <button
+                    type="button"
+                    className="nav-item print-nav"
+                    onClick={() => {
+                        window.open('/resume.pdf', '_blank')
+                    }}
+                >
+                    Print PDF resume
                 </button>
             </nav>
 
