@@ -26,16 +26,16 @@ const resumeData = {
     ],
     experience: [
         {
-            title: 'Client Support Associate',
-            company: 'Stoic Management Group',
-            duration: 'Jun 2026 - Present',
-            description: 'Provide technical support and troubleshooting for clients using the company’s software products, ensuring timely resolution of issues and maintaining high customer satisfaction through clear communication and effective problem-solving.'
-        },
-        {
             title: 'Starbucks Barista & Checkout Associate',
             company: 'Giant Food Stores',
-            duration: 'Aug 2025 - Jun 2026',
+            duration: 'Aug 2025 - Present',
             description: 'Worked in a fast-paced environment, providing excellent customer service, managing transactions, and collaborating with team members to ensure smooth operations during peak hours.'
+        },
+        {
+            title: 'Client Support Associate',
+            company: 'Stoic Management Group',
+            duration: 'Jun 2026 - July 2026',
+            description: 'Provide technical support and troubleshooting for clients using the company’s software products, ensuring timely resolution of issues and maintaining high customer satisfaction through clear communication and effective problem-solving.'
         },
         {
             title: 'Software Developer',
