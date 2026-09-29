@@ -26,35 +26,38 @@ const resumeData = {
     ],
     experience: [
         {
+            title: 'Mezzanine Generalist',
+            company: 'ES3 LLC',
+            duration: 'Aug 2026 - Present',
+            link: 'https://www.es3.com/',
+            description: 'Full-time warehouse role at ES3, LLC supporting automated operations by monitoring systems for faults, recovering errors, and helping keep workflow efficient.'
+        },
+        {
             title: 'Starbucks Barista & Checkout Associate',
             company: 'Giant Food Stores',
-            duration: 'Aug 2025 - Present',
+            duration: 'Aug 2025 - Aug 2026',
+            link: 'https://giantfoodstores.com/pages/our-story?tab=our-purpose',
             description: 'Worked in a fast-paced environment, providing excellent customer service, managing transactions, and collaborating with team members to ensure smooth operations during peak hours.'
         },
         {
             title: 'Client Support Associate',
             company: 'Stoic Management Group',
             duration: 'Jun 2026 - July 2026',
+            link: 'https://stoicmgmtgroup.com/',
             description: 'Provide technical support and troubleshooting for clients using the company’s software products, ensuring timely resolution of issues and maintaining high customer satisfaction through clear communication and effective problem-solving.'
-        },
-        {
-            title: 'Software Developer',
-            company: 'FormPix',
-            duration: 'Jan 2026 - May 2026',
-            description: 'Built a Node.js/Express backend and client interface to control LED pixel displays through REST APIs, including authentication and real-time state updates.'
         }
     ],
     projects: [
         {
             name: 'FormPix',
             technologies: ['Node.js', 'Express', 'REST API', 'JavaScript'],
-            description: 'Web application for controlling programmable LED displays with secure user authentication and real-time command updates.',
+            description: 'Web application for controlling programmable LED displays with secure user authentication and real-time command updates through REST APIs on a raspberry pi.',
             link: 'https://github.com/csmith1188/formPix'
         },
         {
             name: 'QuizBank',
             technologies: ['Node.js', 'Express', 'NoSQL', 'JavaScript'],
-            description: 'Education platform that enables teachers to create quizzes, monitor student progress, and generate reports for school management workflows.',
+            description: 'Educational platform that enables teachers to create quizzes, monitor student progress, and generate reports for school management workflows.',
             link: 'https://github.com/csmith1188/quizbank'
         },
         {
@@ -84,7 +87,7 @@ const resumeData = {
         {
             name: 'ForumBoard',
             technologies: ['JavaScript', 'HTML', 'CSS', 'Node.js', 'Express'],
-            description: 'A simple web-based forum application where users can create posts, reply to threads, and interact with other members in real time.',
+            description: 'A simple web-based forum application where users can create posts, reply to threads, and interact with other members.',
             link: 'https://github.com/RobertFilms/ForumBoard/tree/main'
         }
     ],
@@ -251,28 +254,6 @@ function App() {
                 </div>
             </section>
 
-            {/*
-            <section className="page-preview-grid">
-                <button type="button" className="preview-card" onClick={() => setActivePage('experience')}>
-                    <span className="preview-kicker">Experience</span>
-                    <h2>Work history and impact</h2>
-                    <p>See your roles, responsibilities, and career story in one focused page.</p>
-                </button>
-
-                <button type="button" className="preview-card" onClick={() => setActivePage('projects')}>
-                    <span className="preview-kicker">Projects</span>
-                    <h2>Built work and live links</h2>
-                    <p>Showcase the apps and sites that prove what you can build.</p>
-                </button>
-
-                <button type="button" className="preview-card" onClick={() => setActivePage('skills')}>
-                    <span className="preview-kicker">Skills</span>
-                    <h2>Tools employers care about</h2>
-                    <p>Highlight your strongest languages, frameworks, and technical strengths.</p>
-                </button>
-            </section>
-            */}
-
             <section className="portfolio-links">
                 <h2>Portfolio Sites</h2>
                 <div className="links-grid">
@@ -314,7 +295,12 @@ function App() {
                     </button>
                 </div>
                 {resumeData.experience.map((exp) => (
-                    <div key={`${exp.title}-${exp.company}`} className="experience-item">
+                    <div
+                        key={`${exp.title}-${exp.company}`}
+                        className="experience-item"
+                        tabIndex={0}
+                        role="button"
+                        onClick={() => exp.link && window.open(exp.link, '_blank')}>
                         <div className="exp-header">
                             <h3>{exp.title}</h3>
                             <span className="duration">{exp.duration}</span>
@@ -365,7 +351,13 @@ function App() {
             <section className="education">
                 <h2>Education</h2>
                 {resumeData.education.map((edu) => (
-                    <div key={`${edu.degree}-${edu.school}`} className="education-item">
+                    <div
+                        key={`${edu.degree}-${edu.school}`}
+                        className="education-item"
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => window.open('https://www.ytech.edu/', '_blank')}
+                    >
                         <h3>{edu.degree}</h3>
                         <p className="school">
                             {edu.school} | {edu.year}
