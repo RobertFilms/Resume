@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
+const pageVersion = 'v1.2.0' // Update this version string as needed
 
 const resumeData = {
     fullName: 'Robert Ambartsumyan',
@@ -169,6 +171,13 @@ const pageCopy = {
 function App() {
     const [activePage, setActivePage] = useState('home')
     const [enlargedCert, setEnlargedCert] = useState(null)
+    const [hasFooterRoom, setHasFooterRoom] = useState(() => window.innerHeight >= 500)
+
+    useEffect(() => {
+        const updateFooterVisibility = () => setHasFooterRoom(window.innerHeight >= 500)
+        window.addEventListener('resize', updateFooterVisibility)
+        return () => window.removeEventListener('resize', updateFooterVisibility)
+    }, [])
 
     const goHome = () => setActivePage('home')
 
@@ -613,6 +622,22 @@ function App() {
                 {activePage === 'contact' && renderContactPage()}
             </main>
             {renderCertModal()}
+            {hasFooterRoom && (
+                <footer
+                    className="page-version"
+                    style={{
+                        position: 'relative',
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        marginTop: '1rem',
+                        padding: '0.5rem 1rem',
+                        color: 'gray',
+                        textAlign: 'center',
+                    }}
+                >
+                    {pageVersion}
+                </footer>
+            )}
         </div>
     )
 }
