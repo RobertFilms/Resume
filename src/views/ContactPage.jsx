@@ -11,11 +11,11 @@ export default function ContactPage({ onBack }) {
         <div className="contact-grid">
           <div className="contact-callout">
             <span>Email</span>
-            <strong>{resumeData.email}</strong>
+            <a href={`mailto:${resumeData.email}`}>{resumeData.email}</a>
           </div>
           <div className="contact-callout">
             <span>Phone</span>
-            <strong>{resumeData.phone}</strong>
+            <a href={`tel:${resumeData.phone}`}>{resumeData.phone}</a>
           </div>
           <div className="contact-callout">
             <span>Location</span>

@@ -87,6 +87,7 @@ export const resumeData = {
       description:
         "A simple web-based game where players control a dinosaur to run and jump over obstacles. This game provided an introduction to HTML Canvas and reactive development.",
       link: "https://github.com/RobertFilms/Run-n-Jump",
+      demo: "/demos/Run-n-Jump/index.html",
     },
     {
       name: "Zombie Shooter",

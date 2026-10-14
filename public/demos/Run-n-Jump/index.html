@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run n' Jump</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('sprites/title.png');
+            background-size: cover;
+        }
+
+        #startScreen {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+            color: #000000;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            font-size: 1.5em;
+            font-style: italic;
+            color: #673ab7;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #673ab7;
+            color: #ffffff;
+            transition: background-color 0.1s;
+        }
+
+        button:hover {
+            background-color: #5e35b1;
+        }
+
+        .difficulty-button.active {
+            background-color: #2e7d32;
+            box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #2e7d32;
+        }
+
+        a {
+            text-decoration: none;
+            color: #673ab7;
+            transition: color 0.9s;
+        }
+
+        a:hover {
+            color: #5e35b1;
+        }
+
+        #startAudio {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #673ab7;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="startScreen">
+        <h1>Run n' Jump</h1>
+        <h3>(The Game)</h3>
+        <br>
+        <h2>Choose Difficulty</h2>
+        <p id="difficultyStatus" aria-live="polite">Difficulty: Medium</p>
+        <button id="easy" class="difficulty-button" onClick="easyMode()">Easy</button>
+        <button id="medium" class="difficulty-button" onClick="mediumMode()">Medium</button>
+        <button id="hard" class="difficulty-button" onClick="hardMode()">Hard</button>
+        <br>
+        <br>
+        <a href="game.html">
+            <h2>Play Game</h2>
+        </a>
+        <br>
+        <a href="help.html">
+            <h2>Help Menu</h2>
+        </a>
+        <br>
+        <a href="updates.html">
+            <h2>Upcoming Updates</h2>
+        </a>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuSong = new Audio('audio/menu.mp3');
+            menuSong.loop = true;
+            menuSong.volume = 0.2;
+
+            selectDifficulty(localStorage.getItem('runNJumpDifficulty') || 'medium');
+
+            const button = document.getElementById('startAudio');
+            button.style.display = 'block';
+
+            button.addEventListener('click', () => {
+                menuSong.play().catch(error => {
+                    console.log('Playback prevented:', error);
+                });
+                button.style.display = 'none';
+            });
+        });
+
+        function selectDifficulty(difficulty) {
+            localStorage.setItem('runNJumpDifficulty', difficulty);
+            const difficultyNames = {
+                easy: 'Easy',
+                medium: 'Medium',
+                hard: 'Hard',
+            };
+            const selectedName = difficultyNames[difficulty] || difficultyNames.medium;
+            const status = document.getElementById('difficultyStatus');
+            if (status) status.textContent = `Difficulty: ${selectedName}`;
+
+            document.querySelectorAll('.difficulty-button').forEach((button) => {
+                const isSelected = button.id === difficulty;
+                button.classList.toggle('active', isSelected);
+                button.setAttribute('aria-pressed', isSelected);
+            });
+        }
+
+        function easyMode() {
+            selectDifficulty('easy');
+        }
+
+        function mediumMode() {
+            selectDifficulty('medium');
+        }
+
+        function hardMode() {
+            selectDifficulty('hard');
+        }
+    </script>
+</body>
+
+</html>

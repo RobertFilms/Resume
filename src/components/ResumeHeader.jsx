@@ -18,8 +18,8 @@ export default function ResumeHeader() {
           <h1>{resumeData.fullName}</h1>
           <p className="title">{resumeData.title}</p>
           <div className="contact-info">
-            <span>📧 {resumeData.email}</span>
-            <span>📱 {resumeData.phone}</span>
+            <a href={`mailto:${resumeData.email}`}>📧 {resumeData.email}</a>
+            <a href={`tel:${resumeData.phone}`}>📱 {resumeData.phone}</a>
             <span>📍 {resumeData.location}</span>
           </div>
         </div>
